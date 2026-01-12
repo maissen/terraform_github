@@ -1,3 +1,3 @@
-provider github {
-    // the GITHUB_TOKEN env var is set
+provider "github" {
+  // the GITHUB_TOKEN env var is set
 }
