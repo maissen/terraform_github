@@ -1,4 +1,4 @@
-resource "github_repository" "my_repo" {
+resource "github_repository" "my_repo1" {
   name            = "my_terraform_lab"
   description     = "This github repo is provisioned by Terraform!"
   visibility      = "public"
@@ -7,4 +7,14 @@ resource "github_repository" "my_repo" {
   has_projects    = true
   has_wiki        = true
   auto_init       = true
+
+  provisioner "local-exec" {
+    when = create
+    command = "echo Repo link : ${self.html_url}"
+    on_failure = continue
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
